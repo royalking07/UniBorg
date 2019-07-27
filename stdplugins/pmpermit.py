@@ -83,7 +83,7 @@ async def approve_p_m(event):
         if event.is_private:
             if is_approved(chat.id):
                 disapprove(chat.id)
-                await event.edit("Blocked PM")
+                await event.edit(".................../´¯/) \n.................,/¯../ \n................/..../ \n........../´¯/'...'/´¯¯`·¸ \n....../'/.../..../......./¨¯\ \n.....('(...´...´.... ¯~/'...') \n......\.................'...../ \n.......''...\.......... _.·´ \n.........\..............( \n...........\.............\...\n\nFuck Off Bitch")
                 await asyncio.sleep(3)
                 await borg(functions.contacts.BlockRequest(chat.id))
 
