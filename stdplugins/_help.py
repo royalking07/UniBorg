@@ -2,6 +2,7 @@ import sys
 from telethon import events, functions, __version__
 from uniborg.util import admin_cmd
 
+
 @borg.on(admin_cmd(pattern="helpme ?(.*)", allow_sudo=True))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
@@ -11,10 +12,11 @@ async def _(event):
         s_help_string = borg._plugins[splugin_name].__doc__
     else:
         s_help_string = ""
-    help_string = """`Hi, I am a Bot in service of Master Snap. I am Running.. 
+    help_string = """@UniBorg
 Python {}
-Telethon {}`
-""".format(
+Telethon {}
+
+UserBot Forked from https://github.com/expectocode/uniborg""".format(
         sys.version,
         __version__
     )
