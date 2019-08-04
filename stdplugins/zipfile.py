@@ -16,7 +16,7 @@ async def _(event):
     reply_file = await event.get_reply_message()
     if not reply_file is None:
         directory_name =  await borg.download_media(
-                reply_message
+                reply_file
         )
         zipf = zipfile.ZipFile(directory_name + ".zip", "w", zipfile.ZIP_DEFLATED)
         zipdir(directory_name, zipf)
