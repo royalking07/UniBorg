@@ -19,7 +19,7 @@ async def _(event):
         directory_name =  await borg.download_media(
                 reply_file
         )
-        file_caption = Plugin By SnapDragon
+        file_caption = "Plugin By SnapDragon"
         zipf = zipfile.ZipFile(directory_name + ".zip", "w", zipfile.ZIP_DEFLATED)
         zipdir(directory_name, zipf)
         zipf.close()
