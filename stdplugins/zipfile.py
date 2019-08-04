@@ -1,6 +1,7 @@
 """Plugin Made By SnapDragon
 Use: .compress"""
 import zipfile
+import os
 from telethon import events
 from telethon.tl.types import DocumentAttributeVideo
 from uniborg.util import admin_cmd
