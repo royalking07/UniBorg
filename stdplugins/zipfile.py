@@ -13,8 +13,11 @@ async def _(event):
     if not event.is_reply:
         await event.edit("Reply to a file to compress it")
         return
-    directory_name = await event.get_reply_message()
-    if not directory_name is None:
+    reply_file = await event.get_reply_message()
+    if not reply_file is None:
+        directory_name =  await borg.download_media(
+                reply_message
+        )
         zipf = zipfile.ZipFile(directory_name + ".zip", "w", zipfile.ZIP_DEFLATED)
         zipdir(directory_name, zipf)
         zipf.close()
