@@ -1,5 +1,5 @@
 telethon
 lxml
-selenium
+selenium3.141.0
 aria2p
 -r ./requirements-stdborg.txt
