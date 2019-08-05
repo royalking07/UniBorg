@@ -18,6 +18,7 @@ python-magic
 regex
 requests
 PyGithub
+selenium
 speedtest-cli
 sqlalchemy
 telegraph
