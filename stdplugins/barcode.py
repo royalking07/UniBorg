@@ -73,7 +73,7 @@ async def _(event):
     ms = (end - start).seconds
     if downloader.isSuccessful():
         await mone.edit("Downloaded to `{}` in {} seconds.".format(downloaded_file_name, ms))
-    mone = await event.edit("Processing ...")
+    mone = await event.reply("Processing ...")
     input_str = file_name
     thumb = None
     if os.path.exists(thumb_image_path):
@@ -96,3 +96,4 @@ async def _(event):
         end = datetime.now()
         os.remove(input_str)
         ms = (end - start).seconds
+        await mone.edit("Uploaded in {} seconds.".format(ms))
