@@ -22,6 +22,10 @@ from telethon.tl.types import DocumentAttributeVideo
 from pySmartDL import SmartDL
 from uniborg.util import admin_cmd, humanbytes, progress, time_formatter
 
+
+thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
+
+
 @borg.on(admin_cmd("bar (.*)"))
 async def _(event):
     if event.fwd_from:
@@ -32,7 +36,7 @@ async def _(event):
     link = sample_url.rstrip()
     start = datetime.now()
     url = link
-    file_name = "barcode.png"
+    file_name = "barcode.webp"
     to_download_directory = Config.TMP_DOWNLOAD_DIRECTORY
     url = url.strip()
     file_name = file_name.strip()
