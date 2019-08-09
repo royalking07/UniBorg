@@ -22,6 +22,7 @@ from telethon import events
 from telethon.tl.types import DocumentAttributeVideo
 from pySmartDL import SmartDL
 from uniborg.util import admin_cmd, humanbytes, progress, time_formatter
+from uniborg import util
 
 
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
