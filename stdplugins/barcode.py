@@ -27,7 +27,7 @@ async def _(event):
     if event.fwd_from:
         return
     input_str = event.pattern_match.group(1)
-    url = "https://www.scandit.com/wp-content/themes/bridge-child/wbq_barcode_gen.php?symbology=code128&value={}&size=100&ec=L".format(input_str.replace(" ","-"))
+    sample_url = "https://www.scandit.com/wp-content/themes/bridge-child/wbq_barcode_gen.php?symbology=code128&value={}&size=100&ec=L".format(input_str.replace(" ","-"))
     response_api = requests.get(sample_url).text
     if response_api:
         link = response_api.rstrip()
