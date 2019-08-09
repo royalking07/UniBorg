@@ -32,6 +32,7 @@ thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 async def _(event):
     if event.fwd_from:
         return
+    await event.delete()
     mone = await event.reply("Processing ...")
     input_str = event.pattern_match.group(1)
     sample_url = "https://www.scandit.com/wp-content/themes/bridge-child/wbq_barcode_gen.php?symbology=code128&value={}&size=100&ec=L".format(input_str.replace(" ","-"))
