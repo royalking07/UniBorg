@@ -26,6 +26,7 @@ from uniborg.util import admin_cmd, humanbytes, progress, time_formatter
 async def _(event):
     if event.fwd_from:
         return
+    mone = await event.reply("Processing ...")
     input_str = event.pattern_match.group(1)
     sample_url = "https://www.scandit.com/wp-content/themes/bridge-child/wbq_barcode_gen.php?symbology=code128&value={}&size=100&ec=L".format(input_str.replace(" ","-"))
     link = sample_url.rstrip()
