@@ -74,7 +74,7 @@ async def _(event):
     if downloader.isSuccessful():
         await mone.edit("Downloaded to `{}` in {} seconds.".format(downloaded_file_name, ms))
     mone = await event.reply("Processing ...")
-    input_str = file_name
+    input_str = Config.TMP_DOWNLOAD_DIRECTORY + file_name
     thumb = None
     if os.path.exists(thumb_image_path):
         thumb = thumb_image_path
