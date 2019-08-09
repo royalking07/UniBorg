@@ -75,7 +75,7 @@ async def _(event):
         thumb = None
         if os.path.exists(thumb_image_path):
             thumb = thumb_image_path
-       if os.path.exists(input_str):
+        if os.path.exists(input_str):
             start = datetime.now()
             c_time = time.time()
             await borg.send_file(
