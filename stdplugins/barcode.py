@@ -28,30 +28,6 @@ from uniborg import util
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 
 
-async def get_target_message(event):
-    if event.is_reply and (await event.get_reply_message()).from_id == borg.uid:
-        return await event.get_reply_message()
-    async for message in borg.iter_messages(
-            await event.get_input_chat(), limit=20):
-        if message.out:
-            return message
-        
-
-async def await_read(chat, message):
-    chat = telethon.utils.get_peer_id(chat)
-
-    async def read_filter(read_event):
-        return (read_event.chat_id == chat
-                and read_event.is_read(message))
-    fut = borg.await_event(events.MessageRead(inbox=False), read_filter)
-
-    if await util.is_read(borg, chat, message):
-        fut.cancel()
-        return
-
-    await fut
-
-
 @borg.on(admin_cmd("bar (.*)"))
 async def _(event):
     if event.fwd_from:
