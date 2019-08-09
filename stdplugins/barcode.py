@@ -73,6 +73,7 @@ async def _(event):
     ms = (end - start).seconds
     if downloader.isSuccessful():
         await mone.edit("Downloaded to `{}` in {} seconds.".format(downloaded_file_name, ms))
+        await event.delete()
     mone = await event.reply("Processing ...")
     input_str = Config.TMP_DOWNLOAD_DIRECTORY + file_name
     thumb = None
@@ -97,3 +98,4 @@ async def _(event):
         os.remove(input_str)
         ms = (end - start).seconds
         await mone.edit("Uploaded in {} seconds.".format(ms))
+        await event.delete()
