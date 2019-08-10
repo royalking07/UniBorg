@@ -4,6 +4,7 @@
 from math import ceil
 import asyncio
 import json
+import random
 import re
 from telethon import events, custom
 from uniborg.util import admin_cmd, humanbytes
@@ -259,13 +260,14 @@ All instructions to run @UniBorg in your device has been explained in https://gi
 def paginate_help(page_number, loaded_plugins, prefix):
     number_of_rows = Config.NO_OF_BUTTONS_DISPLAYED_IN_H_ME_CMD
     number_of_cols = 2
+    multi = ["😀", "😁", "😂", "🤣", "😃"]
     helpable_plugins = []
     for p in loaded_plugins:
         if not p.startswith("_"):
             helpable_plugins.append(p)
     helpable_plugins = sorted(helpable_plugins)
     modules = [custom.Button.inline(
-        "{} {} {}".format("☻", x, "☻"),
+        "{} {} {}".format(random.choice(multi), x, random.choice(multi)),
         data="ub_plugin_{}".format(x))
         for x in helpable_plugins]
     pairs = list(zip(modules[::number_of_cols], modules[1::number_of_cols]))
