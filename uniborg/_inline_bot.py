@@ -89,6 +89,7 @@ if Config.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                     "-j",
                     ytdl_url
                 ]
+                await asyncio.sleep(5)
                 logger.info(command_to_exec)
                 process = await asyncio.create_subprocess_exec(
                     *command_to_exec,
