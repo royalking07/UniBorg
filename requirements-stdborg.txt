@@ -1,6 +1,5 @@
 aiofiles
 aiohttp
-barcode
 beautifulsoup4
 cfscrape
 cryptg
@@ -15,6 +14,7 @@ hachoir
 Pillow
 psycopg2
 pySmartDL
+python-barcode
 python-magic
 qrcode
 regex
