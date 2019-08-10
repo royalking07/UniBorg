@@ -184,7 +184,7 @@ if Config.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                         ])
                     result = builder.article(
                         "YouTube © @UniBorg",
-                        text="{} powered by @UniBorg".format(ytdl.replace("https://www.google.com/url?q=", "")),
+                        text="{} powered by @UniBorg".format(ytdl_url.replace("https://www.google.com/url?q=", "")),
                         buttons=inline_keyboard,
                         link_preview=True
                     )
