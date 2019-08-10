@@ -1,5 +1,6 @@
 aiofiles
 aiohttp
+barcode
 beautifulsoup4
 cfscrape
 cryptg
