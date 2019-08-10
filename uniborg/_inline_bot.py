@@ -78,7 +78,7 @@ if Config.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             )
         elif query.startswith("ytdl"):
             # input format should be ytdl URL
-            p = re.compile("ytdl (.*)")
+            p = re.compile("ytdl https://www.google.com/url?q=(.*)")
             r = p.search(query)
             ytdl_url = r.group(1).strip()
             if ytdl_url.startswith("http"):
@@ -89,7 +89,6 @@ if Config.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                     "-j",
                     ytdl_url
                 ]
-                await asyncio.sleep(5)
                 logger.info(command_to_exec)
                 process = await asyncio.create_subprocess_exec(
                     *command_to_exec,
