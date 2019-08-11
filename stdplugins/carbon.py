@@ -63,7 +63,7 @@ async def carbon_api(e):
    await e.client.send_file(
          e.chat_id,
          file,
-         caption="Carbonated Text Created By SnapDragon\n\nCarbonated Text Value:\n`{}`".format(code),
+         caption="`---Carbonated Text Created By SnapDragon---`\n\n---Carbonated Text Value---:\n`{}`".format(code.replace("+", " ")),
          force_document=True,
          reply_to=e.message.reply_to_msg_id,
          )
