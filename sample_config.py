@@ -7,6 +7,8 @@ from telethon.tl.types import ChatBannedRights
 class Config(object):
     LOGGER = True
     # Get this value from my.telegram.org! Please do not steal
+    TZ = os.environ.get("TZ, None")
+    # Time Zone
     APP_ID = int(os.environ.get("APP_ID", 6))
     API_HASH = os.environ.get("API_HASH", "eb06d4abfb49dc3eeb1aeb98ae0f581e")
     # string session for running on Heroku
