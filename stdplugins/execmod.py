@@ -34,7 +34,7 @@ async def _(event):
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
-    OUTPUT = f"**[Ravana's](tg://need_update_for_some_feature/) CPU Model:**\n"
+    OUTPUT = f"**[SnapDragon's](tg://need_update_for_some_feature/) CPU Model:**\n"
     stdout, stderr = await process.communicate()
     if len(stdout) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(stdout)) as out_file:
@@ -73,7 +73,7 @@ async def _(event):
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
-    OUTPUT = f"**[Ravana's](tg://need_update_for_some_feature/) CPU UPTIME:**\n"
+    OUTPUT = f"**[SnapDragon's](tg://need_update_for_some_feature/) CPU UPTIME:**\n"
     stdout, stderr = await process.communicate()
     if len(stdout) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(stdout)) as out_file:	
@@ -113,7 +113,7 @@ async def _(event):
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
-    OUTPUT = f"**[Ravana's](tg://need_update_for_some_feature/) SUICIDE BOMB:**\n"
+    OUTPUT = f"**[SnapDragon's](tg://need_update_for_some_feature/) SUICIDE BOMB:**\n"
     stdout, stderr = await process.communicate()
     if len(stdout) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(stdout)) as out_file:	
@@ -153,7 +153,7 @@ async def _(event):
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
-    OUTPUT = f"**[Ravana's](tg://need_update_for_some_feature/) STDPLUGINS:**\n"
+    OUTPUT = f"**[SnapDragon's](tg://need_update_for_some_feature/) STDPLUGINS:**\n"
     stdout, stderr = await process.communicate()
     if len(stdout) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(stdout)) as out_file:	
@@ -193,7 +193,7 @@ async def _(event):
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
-    OUTPUT = f"**[Ravana's](tg://need_update_for_some_feature/) PIP UPGRADE:**\n"
+    OUTPUT = f"**[SnapDragon's](tg://need_update_for_some_feature/) PIP UPGRADE:**\n"
     stdout, stderr = await process.communicate()
     if len(stdout) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(stdout)) as out_file:	
@@ -232,7 +232,7 @@ async def _(event):
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
-    OUTPUT = f"**[Ravana's](tg://need_update_for_some_feature/) Date & Time Of India:**\n\n\n"
+    OUTPUT = f"**[SnapDragon's](tg://need_update_for_some_feature/) Date & Time Of India:**\n\n\n"
     stdout, stderr = await process.communicate()
     if len(stdout) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(stdout)) as out_file:	
@@ -271,7 +271,7 @@ async def _(event):
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
-    OUTPUT = f"**[Ravana's](tg://need_update_for_some_feature/) Environment Module:**\n\n\n"
+    OUTPUT = f"**[SnapDragon's](tg://need_update_for_some_feature/) Environment Module:**\n\n\n"
     stdout, stderr = await process.communicate()
     if len(stdout) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(stdout)) as out_file:	
@@ -311,7 +311,7 @@ async def _(event):
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
-    OUTPUT = f"**[Ravana's](tg://need_update_for_some_feature/) Neofetch Installed, Use `.sysd` :**\n"
+    OUTPUT = f"**[SnapDragon's](tg://need_update_for_some_feature/) Neofetch Installed, Use `.sysd` :**\n"
     stdout, stderr = await process.communicate()
     if len(stdout) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(stdout)) as out_file:
