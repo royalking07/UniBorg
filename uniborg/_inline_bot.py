@@ -201,7 +201,7 @@ All instructions to run @UniBorg in your device has been explained in https://gi
                     [custom.Button.url(
                         "Source Code", "https://github.com/SnapDragon7410/UniBorg")],
                     [custom.Button.url(
-                        "Deploy to Heroku", "https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FSnapDragon7410%2FUniBorg&template=https%3A%2F%2Fgithub.com%2FSnapDragon7410%2FUniBorg"), custom.Button.url("Fork Boost", "https://telegra.ph/Fork-Boost-07-28"), custom.Button.url("Premium Dyno Cheat", "https://telegra.ph/Premium-Dyno-Cheat-07-28")]
+                        "Deploy to Heroku", "http://da.gd/SnapBorg"), custom.Button.url("Fork Boost", "https://telegra.ph/Fork-Boost-07-28"), custom.Button.url("Premium Dyno Cheat", "https://telegra.ph/Premium-Dyno-Cheat-07-28")]
                 ],
                 link_preview=False
             )
