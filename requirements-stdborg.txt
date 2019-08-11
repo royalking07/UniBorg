@@ -5,6 +5,7 @@ cfscrape
 cryptg
 emoji
 googletrans
+google_images_download
 google-api-python-client
 google_auth_oauthlib
 gsearch>=1.6.0
@@ -12,10 +13,14 @@ gtts
 hachoir
 Pillow
 psycopg2
+pySmartDL
+python-barcode
 python-magic
+qrcode
 regex
 requests
 PyGithub
+selenium
 speedtest-cli
 sqlalchemy
 telegraph
@@ -26,4 +31,3 @@ git+https://github.com/ahupp/python-magic
 google-api-python-client
 oauth2client
 httplib2
-google_images_download>=2.7.1
