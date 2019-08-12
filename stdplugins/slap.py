@@ -16,12 +16,12 @@ SLAP_TEMPLATES = [
     "{hits} {user2} in the face with a {item}.",
     "{hits} {user2} around a bit with a {item}.",
     "{throws} a {item} at {user2}.",
-    "grabs a {item} and {throws} it at {user2}'s face.",
-    "launches a {item} in {user2}'s general direction.",
-    "starts slapping {user2} silly with a {item}.",
-    "pins {user2} down and repeatedly {hits} them with a {item}.",
-    "grabs up a {item} and {hits} {user2} with it.",
-    "ties {user2} to a chair and {throws} a {item} at them.",
+    "grab a {item} and {throws} it at {user2}'s face.",
+    "launch a {item} in {user2}'s general direction.",
+    "start slapping {user2} silly with a {item}.",
+    "pin {user2} down and repeatedly {hits} them with a {item}.",
+    "grab up a {item} and {hits} {user2} with it.",
+    "tie {user2} to a chair and {throws} a {item} at them.",
     "gave a friendly push to help {user2} learn to swim in lava."
 ]
 
@@ -58,18 +58,18 @@ ITEMS = [
 ]
 
 THROW = [
-    "throws",
-    "flings",
-    "chucks",
-    "hurls",
+    "throw",
+    "fling",
+    "chuck",
+    "hurl",
 ]
 
 HIT = [
-    "hits",
-    "whacks",
-    "slaps",
-    "smacks",
-    "bashes",
+    "hit",
+    "whack",
+    "slap",
+    "smack",
+    "bash",
 ]
 
 
@@ -136,6 +136,6 @@ async def slap(replied_user, event):
     hit = random.choice(HIT)
     throw = random.choice(THROW)
 
-    caption = "..." + temp.format(user2=slapped, item=item, hits=hit, throws=throw)
+    caption = "I " + temp.format(user2=slapped, item=item, hits=hit, throws=throw)
 
     return caption
