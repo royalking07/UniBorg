@@ -11,6 +11,8 @@ class Config(object):
     # Time Zone
     APP_ID = int(os.environ.get("APP_ID", 6))
     API_HASH = os.environ.get("API_HASH", "eb06d4abfb49dc3eeb1aeb98ae0f581e")
+    GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", "/app/.apt/usr/bin/google-chrome")
+    CHROME_DRIVER = os.environ.get("CHROME_DRIVER", "/app/.chromedriver/bin/chromedriver")
     # string session for running on Heroku
     # some people upload their session files on GitHub or other third party hosting
     # websites, this might prevent the un-authorized use of the
