@@ -102,7 +102,7 @@ class Config(object):
     VERY_STREAM_LOGIN = os.environ.get("VERY_STREAM_LOGIN", None)
     VERY_STREAM_KEY = os.environ.get("VERY_STREAM_KEY", None)
     TEMP_DIR = os.environ.get("TEMP_DIR", None)
-    CHANNEL_ID = int(os.environ.get("CHANNEL_ID", None))
+    CHANNEL_ID = int(os.environ.get("CHANNEL_ID", -100))
     #Google Chrome Stuff
     CHROME_DRIVER = os.environ.get("CHROME_DRIVER", None)
     GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", None)
