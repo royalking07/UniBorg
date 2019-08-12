@@ -14,7 +14,7 @@ async def _(event):
         return
     input_str = event.pattern_match.group(1)
     as_text = False
-    as_document = True
+    as_document = False
     if input_str == "image":
         as_document = False
     elif input_str == "file":
