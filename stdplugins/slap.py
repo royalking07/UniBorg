@@ -76,6 +76,9 @@ HIT = [
 async def who(event):
     if event.fwd_from:
         return
+    a_user = await event.get_user()
+    mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
+    username1 = f"@{a_user.username}" if a_user.username else mention
     replied_user = await get_user(event)
     caption = await slap(replied_user, event)
     message_id_to_reply = event.message.reply_to_msg_id
@@ -135,6 +138,6 @@ async def slap(replied_user, event):
     hit = random.choice(HIT)
     throw = random.choice(THROW)
 
-    caption = "@"+borg.me.username+" "+ temp.format(user2=slapped, item=item, hits=hit, throws=throw)
+    caption = username1 "+ temp.format(user2=slapped, item=item, hits=hit, throws=throw)
 
     return caption
