@@ -67,8 +67,6 @@ class Config(object):
     # because of their ephemeral file system
     NO_LOAD = [
         "fwd",
-        "telegraph",
-        "afk",
         "gban"
     ]
     # Get your own API key from https://www.remove.bg/ or
@@ -101,6 +99,7 @@ class Config(object):
     # VeryStream only supports video formats
     VERY_STREAM_LOGIN = os.environ.get("VERY_STREAM_LOGIN", None)
     VERY_STREAM_KEY = os.environ.get("VERY_STREAM_KEY", None)
+    GROUP_REG_SED_EX_BOT_S = os.environ.get("GROUP_REG_SED_EX_BOT_S", r"(regex|moku|BananaButler_|rgx|l4mR)bot")
     TEMP_DIR = os.environ.get("TEMP_DIR", None)
     CHANNEL_ID = int(os.environ.get("CHANNEL_ID", -100))
     #Google Chrome Stuff
