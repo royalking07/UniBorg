@@ -2,7 +2,7 @@
 Carbon Scraper Plugin for Userbot. //text in creative way.
 usage: .carbon //as a reply to any text message
 
-Thanks to @AvinashReddy3108 for a Base Plugin.
+Thanks to @AvinashReddy3108 for a Base Plugin
 Go and Do a star on his repo: https://github.com/AvinashReddy3108/PaperplaneExtended/
 
 """
