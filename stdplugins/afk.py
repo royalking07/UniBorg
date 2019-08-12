@@ -81,6 +81,7 @@ async def on_afk(event):
             now = datetime.datetime.now()
             datime_since_afk = now - borg.storage.afk_time  # pylint:disable=E0602
             time = float(datime_since_afk.seconds)
+            timeALL = time
             days = time // (24 * 3600)
             time = time % (24 * 3600)
             hours = time // 3600
@@ -106,8 +107,8 @@ async def on_afk(event):
             else:
                 afk_since = f"`{int(seconds)}s` **ago**"
         msg = None
-        message_to_reply = f"My Boss is Away From Keyboard . \nHe Will Check Your Messeges and Try to Reply.\nKindly Don't Spam . Thank You .\n\n**Last Seen: Only God Knows.** " + \
-            f"\n\n__Reason:__ {reason}" \
+        message_to_reply = f"My Master Is Currently Away From Keyboard.\nHow Long You Ask? Here Is The Period Of Time He Has Been Away.\n\nDays: {days}\nHours: {hours}\nMinutes: {minutes}\nSeconds: {seconds}\n**Time Altogether: {timeALL}**\n\nWhere He Is You Ask?\nONLY GOD KNOWS\n\nReason You Ask?\n" + \
+            f"{reason}" \
             if reason \
             else f"/kickme\n\n**Important Notice**\n\n[This User Is Ded Forever...](https://telegra.ph//file/a53fa950ff31781d5930a.jpg) "
         msg = await event.reply(message_to_reply)
