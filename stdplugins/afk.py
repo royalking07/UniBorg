@@ -106,7 +106,7 @@ async def on_afk(event):
             else:
                 afk_since = f"`{int(seconds)}s` **ago**"
         msg = None
-        message_to_reply = f"`I'll reply soon. I need some time alone (This is an automated message, so everyone who sends me a message will see this, not just you)`" + \
+        message_to_reply = f"`My Master Has Been Gone For {afk_since}\nWhere He Is: GOD ONLY KNOWS `" + \
             f"\n\n__I promise I'll back in a few hours:__ {reason}" \
             if reason \
             else f"**Important Notice**\n\n[This User Is Ded Forever...](https://telegra.ph//file/a53fa950ff31781d5930a.jpg) "
