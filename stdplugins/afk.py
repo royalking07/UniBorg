@@ -107,8 +107,8 @@ async def on_afk(event):
             else:
                 afk_since = f"`{int(seconds)}s` **ago**"
         msg = None
-        message_to_reply = f"My Master Is Currently Away From Keyboard.\nHow Long You Ask? Here Is The Period Of Time He Has Been Away.\n\nDays: {days}\nHours: {hours}\nMinutes: {minutes}\nSeconds: {seconds}\n**Time Altogether: {timeALL}**\n\nWhere He Is You Ask?\nONLY GOD KNOWS\n\nReason You Ask?\n" + \
-            f"{reason}" \
+        message_to_reply = f"My Master Is Currently Away From Keyboard.\nHow Long You Ask? Here Is The Period Of Time He Has Been Away.\n\nDays: {days}\nHours: {hours}\nMinutes: {minutes}\nSeconds: {seconds}\n\nWhere He Is You Ask?\nONLY GOD KNOWS" + \
+            f"\n\nReason You Ask?\n{reason}" \
             if reason \
             else f"/kickme\n\n**Important Notice**\n\n[This User Is Ded Forever...](https://telegra.ph//file/a53fa950ff31781d5930a.jpg) "
         msg = await event.reply(message_to_reply)
