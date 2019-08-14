@@ -73,11 +73,14 @@ HIT = [
 ]
 
 
-async def _(event):
-    a_user = await event.get_user()
+
 
 
 @borg.on(events.NewMessage(pattern=r"\.slap ?(.*)", outgoing=True))
+async def _(event):
+    a_user = await event.get_user()
+    mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
+    username1 = f"@{a_user.username}" if a_user.username else mention
 async def who(event):
     if event.fwd_from:
         return
@@ -140,6 +143,6 @@ async def slap(replied_user, event):
     hit = random.choice(HIT)
     throw = random.choice(THROW)
 
-    caption = "@" + a_user.username + " " + temp.format(user2=slapped, item=item, hits=hit, throws=throw)
+    caption = username1 + " " + temp.format(user2=slapped, item=item, hits=hit, throws=throw)
 
     return caption
