@@ -73,11 +73,14 @@ HIT = [
 ]
 
 
+async def _(event):
+    a_user = await event.get_user()
+
+
 @borg.on(events.NewMessage(pattern=r"\.slap ?(.*)", outgoing=True))
 async def who(event):
     if event.fwd_from:
         return
-    a_user = await event.get_user()
     replied_user = await get_user(event)
     caption = await slap(replied_user, event)
     message_id_to_reply = event.message.reply_to_msg_id
