@@ -16,12 +16,12 @@ SLAP_TEMPLATES = [
     "{hits} {user2} in the face with a {item}.",
     "{hits} {user2} around a bit with a {item}.",
     "{throws} a {item} at {user2}.",
-    "grab a {item} and {throws} it at {user2}'s face.",
-    "launch a {item} in {user2}'s general direction.",
-    "start slapping {user2} silly with a {item}.",
-    "pin {user2} down and repeatedly {hits} them with a {item}.",
-    "grab up a {item} and {hits} {user2} with it.",
-    "tie {user2} to a chair and {throws} a {item} at them.",
+    "grabs a {item} and {throws} it at {user2}'s face.",
+    "launches a {item} in {user2}'s general direction.",
+    "starts slapping {user2} silly with a {item}.",
+    "pins {user2} down and repeatedly {hits} them with a {item}.",
+    "grabs up a {item} and {hits} {user2} with it.",
+    "ties {user2} to a chair and {throws} a {item} at them.",
     "gave a friendly push to help {user2} learn to swim in lava."
 ]
 
