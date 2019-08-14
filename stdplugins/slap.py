@@ -58,18 +58,18 @@ ITEMS = [
 ]
 
 THROW = [
-    "throw",
-    "fling",
-    "chuck",
-    "hurl",
+    "throws",
+    "flings",
+    "chucks",
+    "hurls",
 ]
 
 HIT = [
-    "hit",
-    "whack",
-    "slap",
-    "smack",
-    "bash",
+    "hits",
+    "whacks",
+    "slaps",
+    "smacks",
+    "bashes",
 ]
 
 
@@ -136,6 +136,6 @@ async def slap(replied_user, event):
     hit = random.choice(HIT)
     throw = random.choice(THROW)
 
-    caption = "I " + temp.format(user2=slapped, item=item, hits=hit, throws=throw)
+    caption = "@" + borg.me.username + " " + temp.format(user2=slapped, item=item, hits=hit, throws=throw)
 
     return caption
