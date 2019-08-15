@@ -9,6 +9,9 @@ from telethon import events, functions
 import random
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
+from telethon import TelegramClient
+
+client = TelegramClient(name, Config.APP_ID, Config.API_HASH)
 
 
 SLAP_TEMPLATES = [
