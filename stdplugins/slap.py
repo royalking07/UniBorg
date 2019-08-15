@@ -80,10 +80,12 @@ HIT = [
 
 
 @borg.on(events.NewMessage(pattern=r"\.slap ?(.*)", outgoing=True))
-async def who(event):
+async def _(event):
     if event.fwd_from:
         return
-    me = await client.get_me()
+    a_user = await event.get_user()
+    mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
+    username = f"@{a_user.username}" if a_user.username else mention
     replied_user = await get_user(event)
     caption = await slap(replied_user, event)
     message_id_to_reply = event.message.reply_to_msg_id
