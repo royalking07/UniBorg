@@ -80,6 +80,7 @@ HIT = [
 async def who(event):
     if event.fwd_from:
         return
+    me = await client.get_me()
     replied_user = await get_user(event)
     caption = await slap(replied_user, event)
     message_id_to_reply = event.message.reply_to_msg_id
@@ -139,6 +140,6 @@ async def slap(replied_user, event):
     hit = random.choice(HIT)
     throw = random.choice(THROW)
 
-    caption = "[SNAPDRAGON](tg://user?id=719877937)" + " " + temp.format(user2=slapped, item=item, hits=hit, throws=throw)
+    caption = "@" + me.username + " " + temp.format(user2=slapped, item=item, hits=hit, throws=throw)
 
     return caption
