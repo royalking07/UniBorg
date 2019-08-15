@@ -17,6 +17,10 @@
       "description": "Setting this to ANYTHING will enable environment variables.",
       "value": "ANYTHING"
     },
+    "LOCATION": {
+      "description": "Set your Location for Time plugin"
+      "value": ""
+    },
     "APP_ID": {
       "description": "Get this value from my.telegram.org! Please do not steal",
       "value": ""
