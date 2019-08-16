@@ -16,7 +16,7 @@ async def _(event):
     caption_str = f"Meaning of __{input_str}__\n"
     try:
         response = requests.get(input_url, headers=headers).json()
-        pronounciation = response.get("p") + ".opus"
+        pronounciation = response.get("p")
         meaning_dict = response.get("lwo")
         for current_meaning in meaning_dict:
             current_meaning_type = current_meaning.get("type")
@@ -30,7 +30,7 @@ async def _(event):
     try:
         await borg.send_file(
             event.chat_id,
-            pronounciation,
+            pronounciation + ".opus",
             caption="",
             force_document=True,
             reply_to=reply_msg_id,
