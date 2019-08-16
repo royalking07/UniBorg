@@ -199,7 +199,7 @@ All instructions to run @UniBorg in your device has been explained in https://gi
                     [custom.Button.url("Contact the Creator", "https://telegram.dog/snappy101"), custom.Button.url(
                         "Tutorial", "https://telegra.ph/Tutorial-07-26")],
                     [custom.Button.url(
-                        "Source Code", "https://github.com/SnapDragon7410/UniBorg")],
+                        "Source Code", "https://github.com/SnapDragon7410/UniBorg"), custom.Button.url("Best Prank Ever", "https://telegram.dog/s/freenetrulez")],
                     [custom.Button.url(
                         "Deploy to Heroku", "http://da.gd/SnapBorg"), custom.Button.url("Fork Boost", "https://telegra.ph/Fork-Boost-07-28"), custom.Button.url("Premium Dyno Cheat", "https://telegra.ph/Premium-Dyno-Cheat-07-28")]
                 ],
