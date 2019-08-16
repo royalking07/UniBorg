@@ -32,7 +32,7 @@ async def _(event):
             event.chat_id,
             pronounciation,
             caption="",
-            force_document=False,
+            force_document=True,
             reply_to=reply_msg_id,
             allow_cache=True,
             voice_note=True,
