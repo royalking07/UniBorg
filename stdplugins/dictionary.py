@@ -30,7 +30,7 @@ async def _(event):
     try:
         await borg.send_file(
             event.chat_id,
-            pronounciation + ".opus",
+            pronounciation,
             caption="",
             force_document=True,
             reply_to=reply_msg_id,
