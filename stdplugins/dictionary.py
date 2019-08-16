@@ -31,7 +31,7 @@ async def _(event):
         await borg.send_file(
             event.chat_id,
             pronounciation,
-            caption=f"Pronounciation of __{input_str}__",
+            caption="",
             force_document=False,
             reply_to=reply_msg_id,
             allow_cache=True,
