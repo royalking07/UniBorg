@@ -62,12 +62,22 @@ async def _(event):
     msg = await event.get_reply_message()
     if msg and msg.media:
         bot_api_file_id = pack_bot_file_id(msg.media)
-        add_welcome_setting(event.chat_id, msg.message, True, 0, bot_api_file_id)
-        await event.edit("Welcome Message saved. ")
+        if get_current_welcome_settings(event.chat_id):
+            rm_welcome_setting(event.chat_id)
+            add_welcome_setting(event.chat_id, msg.message, True, 0, bot_api_file_id)
+            await event.edit("Welcome Message updated. ")
+        else:
+            add_welcome_setting(event.chat_id, msg.message, True, 0, bot_api_file_id)
+            await event.edit("Welcome Message saved. ")
     else:
         input_str = event.text.split(None, 1)
-        add_welcome_setting(event.chat_id, input_str[1], True, 0)
-        await event.edit("Welcome Message saved. ")
+        if get_current_welcome_settings(event.chat_id):
+            rm_welcome_setting(event.chat_id)
+            add_welcome_setting(event.chat_id, input_str[1], True, 0)
+            await event.edit("Welcome Message updated. ")
+        else:
+            add_welcome_setting(event.chat_id, input_str[1], True, 0)
+            await event.edit("Welcome Message saved. ")
 
 
 @borg.on(admin_cmd("clearwelcome"))  # pylint:disable=E0602
