@@ -16,6 +16,8 @@ if not os.path.isdir("./SAVED"):
 if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
      os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
 
+LOCATION = Config.TMP_DOWNLOAD_DIRECTORY
+
 @borg.on(events.NewMessage(pattern=r"\.lslocal", outgoing=True))
 async def _(event):
     if event.fwd_from:
@@ -24,7 +26,7 @@ async def _(event):
     PROCESS_RUN_TIME = 100
 #    dirname = event.pattern_match.group(1)
 #    tempdir = "localdir"
-    cmd = "ls -lh ./ravana/"
+    cmd = f"ls -lh {LOCATION}"
 #    if dirname == tempdir:
 	
     eply_to_id = event.message.id
@@ -173,7 +175,7 @@ async def _(event):
         src, dst = input_str.split("|")
         src = src.strip()
         dst = dst.strip()
-    cmd = f"mv ./DOWNLOADS/{src} ./DOWNLOADS/{dst}"
+    cmd = f"mv {LOCATION}{src} {LOCATION}{dst}"
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
@@ -220,7 +222,7 @@ async def handler(event):
     if event.fwd_from:
         return
     input_str = event.pattern_match.group(1)
-    pathtofile = f"./ravana/{input_str}"
+    pathtofile = f"{LOCATION}{input_str}"
 
 	
     if os.path.isfile(pathtofile):
