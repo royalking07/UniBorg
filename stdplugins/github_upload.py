@@ -80,7 +80,7 @@ async def git_commit(file_name,mone):
 		try:
 			repo.create_file(file_name, "Uploaded New Plugin", commit_data, branch="master")
 			print("Committed File")
-			await mone.edit(f"`Commited On Your Github Repo`\n\n[Your STDPLUGINS](https://github.com/{repo}/tree/master/stdplugins/)")
+			await mone.edit("`Commited On Your Github Repo`\n\n[Your STDPLUGINS](https://github.com/{}/tree/master/stdplugins/)".format(ccess))
 		except:
 			print("Cannot Create Plugin")
 			await mone.edit("Cannot Upload Plugin")
