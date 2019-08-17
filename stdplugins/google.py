@@ -27,7 +27,7 @@ async def _(event):
     await event.edit("Processing ...")
     input_str = event.pattern_match.group(1) # + " -inurl:(htm|html|php|pls|txt) intitle:index.of \"last modified\" (mkv|mp4|avi|epub|pdf|mp3)"
     num_results = Config.GOOGLE_SEARCH_COUNT_LIMIT
-    query = input_str ('Query: ')
+    query = ('Query: ' + input_str)
     query = urllib.urlencode ( { 'q' : query } )
     response = urllib.urlopen ( 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&' + query ).read()
     json = m_json.loads ( response )
