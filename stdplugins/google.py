@@ -15,6 +15,7 @@ from uniborg.util import admin_cmd
 from urllib.parse import quote_plus
 from urllib.error import HTTPError
 import json
+from requests import get
 
 
 def progress(current, total):
