@@ -10,6 +10,8 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from google_images_download import google_images_download
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 from googlesearch import search
 from uniborg.util import admin_cmd
 from urllib.parse import quote_plus
@@ -31,7 +33,7 @@ async def _(event):
         match_ = event.pattern_match.group(1)
         match = quote_plus(match_)
         result = ""
-        for i in search(match, stop = 10, only_standard = True):
+        for i in search(match, stop = Config.GOOGLE_SEARCH_COUNT_LIMIT, only_standard = True):
             sed = get(i)
             soup = BeautifulSoup(sed.content)
             result += f"📍{soup.title.string}\nLink: {i}\n\n"
