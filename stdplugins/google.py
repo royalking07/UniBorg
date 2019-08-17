@@ -21,24 +21,6 @@ def progress(current, total):
     logger.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
 
 
-@borg.on(admin_cmd("google search (.*)"))
-async def _(event):
-    if event.fwd_from:
-        return
-    await event.edit("Processing ...")
-    input_str = event.pattern_match.group(1)
-    url = "http://google.com"
-    query = input("Query:" + input_str)
-    query = urllib.parse.urlencode( {'q' : query } )
-    response = urllib.request.urlopen (url + query ).read()
-    data = json.loads ( response.decode() )
-    results = data [ 'responseData' ] [ 'results' ]
-    for result in results:
-        title = result['title']
-        url = result['url']
-        await event.edit( title + '; ' + url )
-
-
 @borg.on(admin_cmd("google image (.*)"))
 async def _(event):
     if event.fwd_from:
