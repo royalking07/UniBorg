@@ -33,7 +33,7 @@ async def download(event):
 	input_str = event.pattern_match.group(1)
 	if not os.path.isdir(GIT_TEMP_DIR):
 		os.makedirs(GIT_TEMP_DIR)
-        test = Config.GIT_REPO_NAME
+	ccess = Config.GIT_REPO_NAME
 	start = datetime.now()
 	reply_message = await event.get_reply_message()
 	try:
