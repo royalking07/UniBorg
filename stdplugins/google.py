@@ -35,7 +35,7 @@ async def _(event):
         result = ""
         for i in search(match, stop = Config.GOOGLE_SEARCH_COUNT_LIMIT, only_standard = True):
             sed = get(i)
-            soup = BeautifulSoup(sed.content)
+            soup = BeautifulSoup(sed.content, "html.parser")
             result += f"📍{soup.title.string}\nLink: {i}\n\n"
         await event.edit(
             "**Google Search Query:**\n\n`" + match_ + "`\n\n**Results:**\n\n" + result,
