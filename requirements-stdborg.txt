@@ -3,7 +3,7 @@ aiohttp
 beautifulsoup4
 cfscrape
 cryptg
-py-cpuinfo
+cpuinfo
 emoji
 googletrans
 google_images_download
