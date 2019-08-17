@@ -25,7 +25,8 @@ async def _(event):
     start = datetime.now()
     await event.edit("Processing ...")
     input_str = event.pattern_match.group(1) # + " -inurl:(htm|html|php|pls|txt) intitle:index.of \"last modified\" (mkv|mp4|avi|epub|pdf|mp3)"
-    search_results = search(input_str, num_results=Config.GOOGLE_SEARCH_COUNT_LIMIT)
+    num_results=Config.GOOGLE_SEARCH_COUNT_LIMIT
+    search_results = search(input_str, num_results)
     output_str = " "
     for text, url in search_results:
         output_str += " 👉🏻  [{}]({}) \n\n".format(text, url)
