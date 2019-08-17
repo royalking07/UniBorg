@@ -61,6 +61,7 @@ async def git_commit(file_name,mone):
 	file = open(file_name,"r",encoding='utf-8')
 	commit_data = file.read()
 	repo = g.get_repo(Config.GIT_REPO_NAME)
+        dude = Config.GIT_REPO_NAME
 	print(repo.name)
 	create_file = True
 	contents = repo.get_contents("")
@@ -79,7 +80,7 @@ async def git_commit(file_name,mone):
 		try:
 			repo.create_file(file_name, "Uploaded New Plugin", commit_data, branch="master")
 			print("Committed File")
-			await mone.edit("[`Committed on Your Github Repo.`](https://github.com/SnapDragon7410/UniBorg/tree/master/stdplugins/)")
+			await mone.edit(f"`Commited On Your Github Repo`\n\n[Your STDPLUGINS](https://github.com/{dude}/tree/master/stdplugins/)")
 		except:
 			print("Cannot Create Plugin")
 			await mone.edit("Cannot Upload Plugin")
