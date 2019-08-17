@@ -17,6 +17,7 @@ psutil
 psycopg2
 pySmartDL
 python-barcode
+pytube
 python-magic
 qrcode
 regex
