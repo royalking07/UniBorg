@@ -13,7 +13,8 @@ from google_images_download import google_images_download
 from googlesearch import search
 from uniborg.util import admin_cmd
 import urllib
-import json as m_json
+import urllib.request
+import json
 
 
 def progress(current, total):
@@ -25,17 +26,17 @@ async def _(event):
     if event.fwd_from:
         return
     await event.edit("Processing ...")
-    input_str = event.pattern_match.group(1) # + " -inurl:(htm|html|php|pls|txt) intitle:index.of \"last modified\" (mkv|mp4|avi|epub|pdf|mp3)"
-    num_results = Config.GOOGLE_SEARCH_COUNT_LIMIT
-    query = ('Query: ' + input_str)
-    query = urllib.urlencode ( { 'q' : query } )
-    response = urllib.urlopen ( 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&' + query ).read()
-    json = m_json.loads ( response )
-    results = json [ 'responseData' ] [ 'results' ]
+    input_str = event.pattern_match.group(1)
+    url = "http://google.com"
+    query = input("Query:" + input_str)
+    query = urllib.parse.urlencode( {'q' : query } )
+    response = urllib.request.urlopen (url + query ).read()
+    data = json.loads ( response.decode() )
+    results = data [ 'responseData' ] [ 'results' ]
     for result in results:
         title = result['title']
-        url = result['url']   # was URL in the original and that threw a name error exception
-        await event.edit(title + '; ' + url)
+        url = result['url']
+        await event.edit( title + '; ' + url )
 
 
 @borg.on(admin_cmd("google image (.*)"))
