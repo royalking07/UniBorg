@@ -45,7 +45,7 @@ def youtube_search(
 
     """ Do a YouTube search. """
     youtube = build('youtube', 'v3',
-                    developerKey=YOUTUBE_API_KEY, cache_discovery=False)
+                    developerKey=Config.YOUTUBE_API_KEY, cache_discovery=False)
     search_response = youtube.search().list(
         q=query,
         type="video",
