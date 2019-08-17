@@ -26,7 +26,7 @@ async def _(event):
 
 
         for video in videos_json:
-            result += f"{i}. {unescape(video['snippet']['title'])} \
+            result += f"{i}. {video['snippet']['title']} \
                 \nhttps://www.youtube.com/watch?v={video['id']['videoId']}\n"
             i += 1
 
