@@ -10,7 +10,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from google_images_download import google_images_download
-from googlesearch import search
+from gsearch.googlesearch import search
 from uniborg.util import admin_cmd
 import urllib
 import urllib.request
@@ -19,6 +19,25 @@ import json
 
 def progress(current, total):
     logger.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
+    
+    
+@borg.on(admin_cmd("google search (.*)"))
+async def _(event):
+    """ For .google command, do a Google search. """
+    if not event.text[0].isalpha() and event.text[0] not in (
+            "/", "#", "@", "!"):
+        await event.edit("`UniBorg is Getting Information From Google Please Wait... ✍️🙇`")
+        match_ = event.pattern_match.group(1)
+        match = quote_plus(match_)
+        result = ""
+        for i in search(match, stop=10, only_standard = True):
+            sed = get(i)
+            soup = BeautifulSoup(sed.content)
+            result += f"📍{soup.title.string}\nLink: {i}\n\n"
+        await event.edit(
+            "**Google Search Query:**\n\n`" + match_ + "`\n\n**Results:**\n\n" + result,
+            link_preview = False
+            )
 
 
 @borg.on(admin_cmd("google image (.*)"))
