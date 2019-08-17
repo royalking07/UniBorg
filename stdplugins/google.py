@@ -44,6 +44,7 @@ async def _(event):
     await event.edit("Processing ...")
     input_str = event.pattern_match.group(1)
     response = google_images_download.googleimagesdownload()
+    test = Config.TG_GLOBAL_ALBUM_LIMIT
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     arguments = {
@@ -55,7 +56,7 @@ async def _(event):
         "output_directory": Config.TMP_DOWNLOAD_DIRECTORY
     }
     paths = response.download(arguments)
-    lst = paths[1234]
+    lst = paths[test]
     await borg.send_file(
         event.chat_id,
         lst,
