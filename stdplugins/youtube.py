@@ -8,7 +8,7 @@ from pytube.helpers import safe_filename
 
 
 @borg.on(admin_cmd(pattern="yt ?(.*)"))
-async def _(events):
+async def _(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         query = event.pattern_match.group(1)
         result = ''
