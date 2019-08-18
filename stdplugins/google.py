@@ -24,23 +24,24 @@ def progress(current, total):
     logger.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
     
     
-@borg.on(admin_cmd("google search (.*)"))
+@borg.on(admin_cmd("go (.*)"))
 async def _(event):
-    """ For .google command, do a Google search. """
-    if not event.text[0].isalpha() and event.text[0] not in (
-            "/", "#", "@", "!"):
-        await event.edit("`SNAPDRAGON GOOGLE ENGINE RUNNING...`")
-        match_ = event.pattern_match.group(1)
-        match = quote_plus(match_)
-        result = ""
-        for i in search(match, stop = Config.GOOGLE_SEARCH_COUNT_LIMIT, only_standard = True):
-            sed = get(i)
-            soup = BeautifulSoup(sed.content, "html.parser")
-            result += f"✌[{soup.title.string}]({i})✌\n\n"
-        await event.edit(
-            "**Google Search Query:**\n\n`" + match_ + "`\n\n**Results:**\n\n" + result,
-            link_preview = False
-            )
+    await event.edit("`SNAPDRAGON GOOGLE SEARCH ENGINE RUNNING...`")
+    match_ = event.pattern_match.group(1)
+    match = quote_plus(match_)
+    if not match:
+        await event.edit("`I can't search nothing !!`")
+        return
+    plain_txt = get(f"https://www.startpage.com/do/search?cmd=process_search&query={match}", 'html').text
+    soup = BeautifulSoup(plain_txt, "lxml")
+    msg = ""
+    for result in soup.find_all('a', {'class': 'w-gl__result-title'}):
+        title = result.text
+        link = result.get('href')
+        msg += f"👌[{title}]({link})👌\n\n"
+    await event.edit(
+        "**Google Search Query:**\n\n`" + match_ + "`\n\n**Results:**\n" + msg,
+        link_preview = False)
 
 
 @borg.on(admin_cmd("google image (.*)"))
