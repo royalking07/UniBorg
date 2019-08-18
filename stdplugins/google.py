@@ -24,7 +24,7 @@ def progress(current, total):
     logger.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
     
     
-@borg.on(admin_cmd("go (.*)"))
+@borg.on(admin_cmd("google search (.*)"))
 async def _(event):
     await event.edit("`SNAPDRAGON GOOGLE SEARCH ENGINE RUNNING...`")
     match_ = event.pattern_match.group(1)
