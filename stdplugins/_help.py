@@ -7,7 +7,7 @@ from uniborg.util import admin_cmd
 from telethon.utils import get_input_location
 
 
-@borg.on(admin_cmd(pattern="helpme ?(.*)", allow_sudo=True))  # pylint:disable=E0602
+@borg.on(admin_cmd(pattern="help ?(.*)", allow_sudo=True))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
@@ -20,7 +20,15 @@ async def _(event):
 Python {}
 Telethon {}
 
-UserBot Forked from https://github.com/expectocode/uniborg""".format(
+|─────────▄▄───▐█
+|───▄██▄──█▀───█─▄
+|    ─██▄▄──▐█▀▄─▐█▀
+|──▄▀▌─▌─█─▌──▌─▌
+|─▀▄─▐▄─▐▄▐▄─▐▄─▐▄
+
+Evolution Of Userbots
+
+UserBot Forked from https://github.com/udf/uniborg""".format(
         sys.version,
         __version__
     )
