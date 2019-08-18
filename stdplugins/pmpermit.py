@@ -17,15 +17,15 @@ borg.storage.PREV_REPLY_MESSAGE = {}
 
 BAALAJI_TG_USER_BOT = "My Master hasn't approved you to PM."
 TG_COMPANION_USER_BOT = "Please wait for his response and don't spam his PM."
-UNIBORG_USER_BOT_WARN_ZERO = "I am currently offline. Please do not SPAM me."
-UNIBORG_USER_BOT_NO_WARN = "Hi! I will answer to your message soon. Please wait for my response and don't spam my PM. Thanks"
+UNIBORG_USER_BOT_WARN_ZERO = "I FUCKING TOLD U TO FUCKING NOT DO FUCKING ANYTHING.😡\n!!!BLOCKAGE ACTIVATED!!!"
+UNIBORG_USER_BOT_NO_WARN = "Hi! My Master has not yet taken note of you in his OFFICE!\nLet me call him and wait right over here and don't do anything😊.\nDoing anything will result in blockage of chat.👿"
 
 
 @borg.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
 async def monito_p_m_s(event):
     sender = await event.get_sender()
     current_message_text = event.message.message.lower()
-    if current_message_text == BAALAJI_TG_USER_BOT or \
+    if current_message_text == UNIBORG_USER_BOT_NO_WARN or \
         current_message_text == TG_COMPANION_USER_BOT or \
         current_message_text == UNIBORG_USER_BOT_NO_WARN:
         # userbot's should not reply to other userbot's
