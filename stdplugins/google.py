@@ -29,14 +29,14 @@ async def _(event):
     """ For .google command, do a Google search. """
     if not event.text[0].isalpha() and event.text[0] not in (
             "/", "#", "@", "!"):
-        await event.edit("`UniBorg is Getting Information From Google Please Wait... ✍️🙇`")
+        await event.edit("`SNAPDRAGON GOOGLE ENGINE RUNNING...`")
         match_ = event.pattern_match.group(1)
         match = quote_plus(match_)
         result = ""
         for i in search(match, stop = Config.GOOGLE_SEARCH_COUNT_LIMIT, only_standard = True):
             sed = get(i)
             soup = BeautifulSoup(sed.content, "html.parser")
-            result += f"✌[{soup.title.string}]({i})✌"
+            result += f"✌[{soup.title.string}]({i})✌\n\n"
         await event.edit(
             "**Google Search Query:**\n\n`" + match_ + "`\n\n**Results:**\n\n" + result,
             link_preview = False
