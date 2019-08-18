@@ -1,4 +1,4 @@
-"""Available Commands: .start hack"""
+"""Available Commands: .hack"""
 from telethon import events 
 import asyncio   
 from uniborg.util import admin_cmd  
@@ -10,7 +10,7 @@ async def _(event):
   animation_interval = 0.3
   animation_ttl = range(0, 6) 
   input_str = event.pattern_match.group(1) 
-  if input_str == "start hack": 
+  if input_str == "hack": 
      await event.edit(input_str)
      animation_chars = [ 
         "ʜᴀᴄᴋɪɴɢ sᴛᴀʀᴛᴇᴅ", 
