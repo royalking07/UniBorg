@@ -28,30 +28,25 @@ def progress(current, total):
     
     
 @borg.on(admin_cmd("google search (.*)"))
-async def gsearch(q_event):
-    """ For .google command, Do a Google search. """
+sync def gsearch(q_event):
+    """ For .google command, do a Google search. """
     if not q_event.text[0].isalpha() and q_event.text[0] not in (
             "/", "#", "@", "!"):
-        await q_event.edit("DRAGON SEARCH SIMULATOR RUNNING...")
         match_ = q_event.pattern_match.group(1)
         match = quote_plus(match_)
-        result = ""
-        stop = Config.GOOGLE_SEARCH_COUNT_LIMIT
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.binary_location = Config.GOOGLE_CHROME_BIN
-        driver = webdriver.Chrome(executable_path=Config.CHROME_DRIVER, options=chrome_options)
-        for i in search(match, stop):
-            driver.get(i)
-            title = driver.title
-            result += f"------------------------------------------------------------------------\n[{title}]({i})\n------------------------------------------------------------------------\n"
+        plain_txt = get(f"https://www.startpage.com/do/search?cmd=process_search&query={match}", 'html').text
+        soup = BeautifulSoup(plain_txt, "lxml")
+        
+        msg = ""
+        for result in soup.find_all('a', {'class': 'w-gl__result-title'}):
+            title = result.text
+            link = result.get('href')
+            msg += f"[{title}]({link})\n"
+            
         await q_event.edit(
-            "Google Search Query:\n\n" + match_ + "\n\nResults:\n\n" + result,
+            "**Search Query:**\n`" + match_ + "`\n\n**Results:**\n" + msg,
             link_preview = False
-            )
+        )
 
 @borg.on(admin_cmd("google image (.*)"))
 async def _(event):
