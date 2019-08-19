@@ -44,7 +44,7 @@ async def gsearch(q_event):
         chrome_options.add_argument("--disable-gpu")
         chrome_options.binary_location = Config.GOOGLE_CHROME_BIN
         driver = webdriver.Chrome(executable_path=Config.CHROME_DRIVER, options=chrome_options)
-        for i in search(match, stop, outgoing=True):
+        for i in search(match, stop):
             driver.get(i)
             title = driver.title
             result += f"------------------------------------------------------------------------\n[{title}]({i})\n------------------------------------------------------------------------\n"
