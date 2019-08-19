@@ -12,7 +12,7 @@ from datetime import datetime
 from google_images_download import google_images_download
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from googlesearch import search
+from gsearch.googlesearch import search
 from uniborg.util import admin_cmd
 from urllib.parse import quote_plus
 from urllib.error import HTTPError
@@ -26,22 +26,20 @@ def progress(current, total):
     
 @borg.on(admin_cmd("google search (.*)"))
 async def _(event):
-    await event.edit("`SNAPDRAGON GOOGLE SEARCH ENGINE RUNNING...`")
-    match_ = event.pattern_match.group(1)
-    match = quote_plus(match_)
-    if not match:
-        await event.edit("`I can't search nothing !!`")
+    if event.fwd_from:
         return
-    plain_txt = get(f"https://www.startpage.com/do/search?cmd=process_search&query={match}", 'html').text
-    soup = BeautifulSoup(plain_txt, "lxml")
-    msg = ""
-    for result in soup.find_all('a', {'class': 'w-gl__result-title'}):
-        title = result.text
-        link = result.get('href')
-        msg += f"------------------------------------------------------------------------[{title}]({link})------------------------------------------------------------------------\n\n"
-    await event.edit(
-        "**Google Search Query:**\n\n`" + match_ + "`\n\n**Results:**\n" + msg,
-        link_preview = False)
+    start = datetime.now()
+    await event.edit("BLACKDRAGON SEARCH ENGINE RUNNING...")
+    input_str = event.pattern_match.group(1) # + " -inurl:(htm|html|php|pls|txt) intitle:index.of \"last modified\" (mkv|mp4|avi|epub|pdf|mp3)"
+    search_results = search(input_str, num_results=Config.GOOGLE_SEARCH_COUNT_LIMIT)
+    output_str = " "
+    for text, url in search_results:
+        output_str += " 👉🏻  ------------------------------------------------------------------------\n[{}]({})\n------------------------------------------------------------------------\n".format(text, url)
+    end = datetime.now()
+    ms = (end - start).seconds
+    await event.edit("Searched for {} in {} seconds. \n{}".format(input_str, ms, output_str), link_preview=False)
+    await asyncio.sleep(5)
+    await event.edit("***QUERY***: {}\n\n***RESULTS***:\n{}".format(input_str, output_str), link_preview=False)
 
 
 @borg.on(admin_cmd("google image (.*)"))
