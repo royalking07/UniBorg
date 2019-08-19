@@ -9,6 +9,9 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.chrome.options import Options
 from google_images_download import google_images_download
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -25,29 +28,29 @@ def progress(current, total):
     
     
 @borg.on(admin_cmd("google search (.*)"))
-async def gsearch(event):
-    """ For .sp command, do a Google search. """
-    if not event.text[0].isalpha() and event.text[0] not in (
+async def gsearch(q_event):
+    """ For .google command, Do a Google search. """
+    if not q_event.text[0].isalpha() and q_event.text[0] not in (
             "/", "#", "@", "!"):
-        search_str = event.pattern_match.group(1)
-
-        await event.edit("`BLACKDRAGON SEARCH ENGINE RUNNING`")
-
-        command = "sp --json "+search_str+" > out.json"
-
-        os.system(command)
-
-        f = open('out.json','r').read()
-
-        data = json.loads(str(f))
-
-        msg = "**Google Search Query:**\n\n`"+search_str+"`\n\n**Results:**\n\n"
-
-        for element in data:
-            msg = msg + "------------------------------------------------------------------------\n**"+element['title']+"**\n"+element['link']+"\n------------------------------------------------------------------------\n\n"
-
-        await event.edit(msg)
-
+        await q_event.edit("DRAGON SEARCH SIMULATOR RUNNING...")
+        match_ = q_event.pattern_match.group(1)
+        match = quote_plus(match_)
+        result = ""
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.binary_location = GOOGLE_CHROME_BIN
+        driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
+        for i in search(match, stop=10, outgoing=True):
+            driver.get(i)
+            title = driver.title
+            result += f"------------------------------------------------------------------------\n[{title}]({i})\n------------------------------------------------------------------------\n"
+        await q_event.edit(
+            "Google Search Query:\n\n" + match_ + "\n\nResults:\n\n" + result,
+            link_preview = False
+            )
 
 @borg.on(admin_cmd("google image (.*)"))
 async def _(event):
