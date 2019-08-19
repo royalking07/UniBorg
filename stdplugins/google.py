@@ -28,7 +28,7 @@ def progress(current, total):
     
     
 @borg.on(admin_cmd("google search (.*)"))
-sync def gsearch(q_event):
+async def gsearch(q_event):
     """ For .google command, do a Google search. """
     if not q_event.text[0].isalpha() and q_event.text[0] not in (
             "/", "#", "@", "!"):
