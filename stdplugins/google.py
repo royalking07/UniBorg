@@ -25,21 +25,28 @@ def progress(current, total):
     
     
 @borg.on(admin_cmd("google search (.*)"))
-async def _(event):
-    if event.fwd_from:
-        return
-    start = datetime.now()
-    await event.edit("BLACKDRAGON SEARCH ENGINE RUNNING...")
-    input_str = event.pattern_match.group(1) # + " -inurl:(htm|html|php|pls|txt) intitle:index.of \"last modified\" (mkv|mp4|avi|epub|pdf|mp3)"
-    search_results = search(input_str, num_results=Config.GOOGLE_SEARCH_COUNT_LIMIT)
-    output_str = " "
-    for text, url in search_results:
-        output_str += " 👉🏻  ------------------------------------------------------------------------\n[{}]({})\n------------------------------------------------------------------------\n".format(text, url)
-    end = datetime.now()
-    ms = (end - start).seconds
-    await event.edit("Searched for {} in {} seconds. \n{}".format(input_str, ms, output_str), link_preview=False)
-    await asyncio.sleep(5)
-    await event.edit("***QUERY***: {}\n\n***RESULTS***:\n{}".format(input_str, output_str), link_preview=False)
+async def gsearch(event):
+    """ For .sp command, do a Google search. """
+    if not event.text[0].isalpha() and event.text[0] not in (
+            "/", "#", "@", "!"):
+        search_str = event.pattern_match.group(1)
+
+        await event.edit("`BLACKDRAGON SEARCH ENGINE RUNNING`")
+
+        command = "sp --json "+search_str+" > out.json"
+
+        os.system(command)
+
+        f = open('out.json','r').read()
+
+        data = json.loads(str(f))
+
+        msg = "**Google Search Query:**\n\n`"+search_str+"`\n\n**Results:**\n\n"
+
+        for element in data:
+            msg = msg + "------------------------------------------------------------------------\n[**"+element['title']+"](**\n"+element['link']+")\n------------------------------------------------------------------------\n\n"
+
+        await event.edit(msg)
 
 
 @borg.on(admin_cmd("google image (.*)"))
