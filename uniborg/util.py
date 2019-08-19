@@ -19,7 +19,7 @@ else:
         from config import Development as Config
 
 
-def admin_cmd(pattern=None, allow_sudo=False, **args):
+def admin_cmd(pattern=None, allow_sudo=True, **args):
     if pattern is not None:
         args["pattern"] = re.compile(Config.COMMAND_HAND_LER + pattern)
     if allow_sudo:
