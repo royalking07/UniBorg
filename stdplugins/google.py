@@ -41,9 +41,9 @@ async def gsearch(q_event):
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-gpu")
-        chrome_options.binary_location = GOOGLE_CHROME_BIN
-        driver = webdriver.Chrome(executable_path=CHROME_DRIVER, options=chrome_options)
-        for i in search(match, stop=10, outgoing=True):
+        chrome_options.binary_location = Config.GOOGLE_CHROME_BIN
+        driver = webdriver.Chrome(executable_path=Config.CHROME_DRIVER, options=chrome_options)
+        for i in search(match, stop=Config.GOOGLE_SEARCH_COUNT_LIMIT, outgoing=True):
             driver.get(i)
             title = driver.title
             result += f"------------------------------------------------------------------------\n[{title}]({i})\n------------------------------------------------------------------------\n"
