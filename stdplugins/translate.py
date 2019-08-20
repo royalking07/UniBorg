@@ -26,7 +26,7 @@ async def _(event):
     lan = lan.strip()
     gs = goslate.Goslate()
     try:
-        translated = gs.translate(text, input_str))
+        translated = gs.translate(text, input_str)
         after_tr_text = translated.text
         # TODO: emojify the :
         # either here, or before translation
