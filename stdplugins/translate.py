@@ -4,7 +4,7 @@ Available Commands:
 .tr LangaugeCode | text to translate"""
 
 import emoji
-from googletrans import Translator
+import goslate
 from uniborg.util import admin_cmd
 
 
@@ -24,9 +24,9 @@ async def _(event):
         return
     text = emoji.demojize(text.strip())
     lan = lan.strip()
-    translator = Translator()
+    gs = goslate.Goslate()
     try:
-        translated = translator.translate(text, dest=lan)
+        translated = gs.translate(text, input_str))
         after_tr_text = translated.text
         # TODO: emojify the :
         # either here, or before translation
