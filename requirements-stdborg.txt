@@ -10,6 +10,7 @@ google_images_download
 google-api-python-client
 google_auth_oauthlib
 gsearch
+goslate
 gtts
 google
 hachoir
