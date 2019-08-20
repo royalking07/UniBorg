@@ -26,6 +26,7 @@ async def _(event):
     lan = lan.strip()
     translator = Translator()
     try:
+        text = emoji.demojize(text.strip())
         translated = translator.translate(text, dest=lan)
         after_tr_text = translated.text
         # TODO: emojify the :
