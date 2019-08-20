@@ -27,12 +27,11 @@ async def _(event):
     gs = goslate.Goslate()
     try:
         translated = gs.translate(text, input_str)
-        after_tr_text = translated.text
+        after_tr_text = translated
         # TODO: emojify the :
         # either here, or before translation
-        output_str = """**TRANSLATED** from {} to {}
+        output_str = """**TRANSLATED** to {}
 {}""".format(
-            translated.src,
             lan,
             after_tr_text
         )
