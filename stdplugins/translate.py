@@ -4,6 +4,7 @@ Available Commands:
 .tr LangaugeCode | text to translate"""
 
 import emoji
+import requests
 import goslate
 from uniborg.util import admin_cmd
 
@@ -13,6 +14,7 @@ async def _(event):
     if event.fwd_from:
         return
     input_str = event.pattern_match.group(1)
+    requests.get(link, headers = {'User-agent': "UNIBORG"})
     if "|" in input_str:
         lan, text = input_str.split("|")
     elif event.reply_to_msg_id:
