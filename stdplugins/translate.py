@@ -5,7 +5,7 @@ Available Commands:
 
 import emoji
 import asyncio
-import goslate
+from googletrans import Translator
 from uniborg.util import admin_cmd
 
 
@@ -23,17 +23,16 @@ async def _(event):
     else:
         await event.edit("`.tr LanguageCode` as reply to a message")
         return
-    text = emoji.demojize(text.strip())
     lan = lan.strip()
-    gs = goslate.Goslate()
+    translator = Translator()
     try:
-        await asyncio.sleep(2)
-        translated = gs.translate(text, input_str)
-        after_tr_text = translated
+        translated = translator.translate(text, dest=lan)
+        after_tr_text = translated.text
         # TODO: emojify the :
         # either here, or before translation
-        output_str = """**TRANSLATED** to {}
+        output_str = """**TRANSLATED** from {} to {}
 {}""".format(
+            translated.src,
             lan,
             after_tr_text
         )
