@@ -4,6 +4,7 @@ Available Commands:
 .tr LangaugeCode | text to translate"""
 
 import emoji
+import asyncio
 import goslate
 from uniborg.util import admin_cmd
 
