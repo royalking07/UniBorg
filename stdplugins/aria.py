@@ -39,7 +39,7 @@ async def magnet_download(event):
 	
 	magnet_uri = var
 	magnet_uri = magnet_uri.replace("`","")
-	print(magnet_uri)
+	await event.edit(magnet_uri)
 
 	#Add Magnet URI Into Queue
 	try:
