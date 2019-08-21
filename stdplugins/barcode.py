@@ -72,8 +72,6 @@ async def _(event):
                 display_message = current_message
         except Exception as e:
             logger.info(str(e))
-    end = datetime.now()
-    ms = (end - start).seconds
     input_str = Config.TMP_DOWNLOAD_DIRECTORY + file_name
     thumb = None
     if os.path.exists(thumb_image_path):
@@ -94,6 +92,6 @@ async def _(event):
             )
         )
         end = datetime.now()
-        os.remove(input_str)
+        os.remove("barcode.webp")
         ms = (end - start).seconds
         await mone.edit("Barcode generated in {} seconds.".format(ms))
