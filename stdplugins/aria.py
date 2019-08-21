@@ -1,5 +1,6 @@
 """
 A Torrent Client Plugin Based On Aria2 for Userbot
+
 cmds: Magnet link : .magnet magnetLink
 	  Torrent file from local: .tor file_path
 	  Show Downloads: .show
@@ -8,6 +9,7 @@ cmds: Magnet link : .magnet magnetLink
 	  Pause All Downloads:  .ariaP
 	  
 By:- @Zero_cool7870	   
+
 """
 import aria2p
 from telethon import events
@@ -42,13 +44,56 @@ async def magnet_download(event):
 	#Add Magnet URI Into Queue
 	try:
 		download = aria2.add_magnet(magnet_uri)
-	except:
-		await event.edit("`Error: Make Sure Magnet link is correct.`")	
-		return
+		gid = download.gid
+		complete = None
+		while complete != True:
+			file = aria2.get_download(gid)
+			complete = file.is_complete
+			try:
+				if not file.error_message:
+					msg = "Downloading Metadata: `"+str(file.name) +"`\nSpeed: "+ str(file.download_speed_string())+"\nProgress: "+str(file.progress_string())+"\nTotal Size: "+str(file.total_length_string())+"\nStatus: "+str(file.status)+"\nETA:  "+str(file.eta_string())+"\n\n"
+					await event.edit(msg)
+					await asyncio.sleep(10)
+				else:
+					msg = file.error_message
+					await event.edit(msg)
+					return 	
+			except Exception as e:
+				#print(str(e))
+				pass
+		await asyncio.sleep(3)
+		new_gid = await check_metadata(gid)
+		complete = None
+		while complete != True:
+			file = aria2.get_download(new_gid[0])
+			complete = file.is_complete
+			try:
+				if not file.error_message:
+					msg = "Downloading File: `"+str(file.name) +"`\nSpeed: "+ str(file.download_speed_string())+"\nProgress: "+str(file.progress_string())+"\nTotal Size: "+str(file.total_length_string())+"\nStatus: "+str(file.status)+"\nETA:  "+str(file.eta_string())+"\n\n"
+					await event.edit(msg)
+					await asyncio.sleep(15)
+				else:
+					msg = file.error_message
+					await event.edit(msg)
+					return 	
+			except Exception as e:
+				#print(str(e))
+				pass
 
-	await event.edit("`Downloading From Magnet Link: `\n\n"+magnet_uri+"\nType show to check status")
-	await asyncio.sleep(5)
-	await event.delete()		
+	except Exception as e:
+		if "not found" in str(e):
+			await event.edit("Download Cancelled:\n`"+file.name+"`")
+			return
+		print(str(e))
+		await event.edit("Error:\n`"+str(e)+"`")	
+		return
+	await event.edit("File Downloaded Successfully:\n`"+file.name+"`")
+	
+async def check_metadata(gid):
+	file = aria2.get_download(gid)
+	new_gid = file.followed_by_ids
+	print("Changing "+gid+" to "+new_gid[0])
+	return new_gid	
 
 @borg.on(events.NewMessage(pattern=r"\.tor", outgoing=True))
 async def torrent_download(event):
@@ -74,12 +119,21 @@ async def torrent_download(event):
 		file = aria2.get_download(gid)
 		complete = file.is_complete
 		try:
-			msg = "Downloading File: "+str(file.name) +"\nSpeed: "+ str(file.download_speed_string())+"\n"+"Progress: "+str(file.progress_string())+"\nETA:  "+str(file.eta_string())+"\n\n"  	
-			await event.edit(msg)
-			await asyncio.sleep(10)
+			if not file.error_message:
+				msg = "Downloading File: `"+str(file.name) +"`\nSpeed: "+ str(file.download_speed_string())+"\nProgress: "+str(file.progress_string())+"\nTotal Size: "+str(file.total_length_string())+"\nStatus: "+str(file.status)+"\nETA:  "+str(file.eta_string())+"\n\n"
+				await event.edit(msg)
+				await asyncio.sleep(10)
+			else:
+					msg = file.error_message
+					await event.edit(msg)
+					return 		
 		except Exception as e:
+			if "not found" in str(e):
+				await event.edit("Download Cancelled:\n`"+file.name+"`")
+				return
 			print(str(e))
-			pass	
+			await event.edit("Error:\n`"+str(e)+"`")	
+			return	
 
 	await event.edit("File Downloaded Successfully:\n`"+download.name+"`")
 
@@ -104,14 +158,24 @@ async def magnet_download(event):
 		file = aria2.get_download(gid)
 		complete = file.is_complete
 		try:
-			msg = "Downloading File: "+str(file.name) +"\nSpeed: "+ str(file.download_speed_string())+"\n"+"Progress: "+str(file.progress_string())+"\nETA:  "+str(file.eta_string())+"\n\n"  	
-			await event.edit(msg)
-			await asyncio.sleep(10)
+			if not file.error_message:
+				msg = "Downloading File: `"+str(file.name) +"`\nSpeed: "+ str(file.download_speed_string())+"\nProgress: "+str(file.progress_string())+"\nTotal Size: "+str(file.total_length_string())+"\nStatus: "+str(file.status)+"\nETA:  "+str(file.eta_string())+"\n\n"
+				await event.edit(msg)
+				await asyncio.sleep(10)
+			else:
+					msg = file.error_message
+					await event.edit(msg)
+					return 	
 		except Exception as e:
+			if "not found" in str(e):
+				await event.edit("Download Cancelled:\n`"+file.name+"`")
+				return
 			print(str(e))
-			pass	
+			await event.edit("Error:\n`"+str(e)+"`")	
+			return
 			
-	await event.edit("File Downloaded Successfully...")
+	await event.edit("File Downloaded Successfully:\n`"+file.name+"`")
+
 
 
 @borg.on(events.NewMessage(pattern=r"\.ariaRM", outgoing=True))
@@ -135,7 +199,7 @@ async def pause_all(event):
 		return
 	paused = aria2.pause_all(force=True)	#Pause ALL Currently Running Downloads.
 
-	await even.edit("Output: "+str(paused))
+	await event.edit("Output: "+str(paused))
 
 @borg.on(events.NewMessage(pattern=r"\.ariaResume", outgoing=True))
 async def resume_all(event):
@@ -157,7 +221,7 @@ async def show_all(event):
 	msg = ""
 
 	for download in downloads:
-		msg = msg+"File: "+str(download.name) +"\nSpeed: "+ str(download.download_speed_string())+"\n"+"Progress: "+str(download.progress_string())+"\nETA:  "+str(download.eta_string())+"\n\n"
+		msg = msg+"File: `"+str(download.name) +"`\nSpeed: "+ str(download.download_speed_string())+"\nProgress: "+str(download.progress_string())+"\nTotal Size: "+str(file.total_length_string)+"\nStatus: "+str(download.status)+"\nETA:  "+str(download.eta_string())+"\n\n"
 	print(msg)
 	if len(msg) <= 4096:
 		await event.edit("`Current Downloads: `\n"+msg)
@@ -175,4 +239,5 @@ async def show_all(event):
             allow_cache=False,
 			reply_to=event.message.id,
 			)				
+
 
