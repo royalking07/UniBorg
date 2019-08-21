@@ -43,6 +43,7 @@ async def magnet_download(event):
 
 	#Add Magnet URI Into Queue
 	try:
+		await event.edit("Starting Download")
 		download = aria2.add_magnet(magnet_uri)
 		gid = download.gid
 		complete = None
