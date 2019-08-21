@@ -27,7 +27,8 @@ async def monito_p_m_s(event):
     current_message_text = event.message.message.lower()
     if current_message_text == BAALAJI_TG_USER_BOT or \
         current_message_text == TG_COMPANION_USER_BOT or \
-        current_message_text == UNIBORG_USER_BOT_NO_WARN:
+        current_message_text == UNIBORG_USER_BOT_NO_WARN or \
+        current_message_text == UNIBORG_USER_BOT_WARN_ZERO:
         # userbot's should not reply to other userbot's
         # https://core.telegram.org/bots/faq#why-doesn-39t-my-bot-see-messages-from-other-bots
         return False
