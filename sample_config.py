@@ -63,11 +63,6 @@ class Config(object):
     CHATS_TO_MONITOR_FOR_ANTI_FLOOD = []
     # specify LOAD and NO_LOAD
     LOAD = []
-    # foloowing plugins won't work on Heroku,
-    # because of their ephemeral file system
-    NO_LOAD = [
-        "gban"
-    ]
     # Get your own API key from https://www.remove.bg/ or
     # feel free to use http://telegram.dog/Remove_BGBot
     REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
