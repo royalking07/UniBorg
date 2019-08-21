@@ -52,8 +52,6 @@ async def magnet_download(event):
 			try:
 				if not file.error_message:
 					msg = "Downloading Metadata: `"+str(file.name) +"`\nSpeed: "+ str(file.download_speed_string())+"\nProgress: "+str(file.progress_string())+"\nTotal Size: "+str(file.total_length_string())+"\nStatus: "+str(file.status)+"\nETA:  "+str(file.eta_string())+"\n\n"
-					await event.edit(msg)
-					await asyncio.sleep(0.1)
 				else:
 					msg = file.error_message
 					await event.edit(msg)
@@ -70,8 +68,6 @@ async def magnet_download(event):
 			try:
 				if not file.error_message:
 					msg = "Downloading File: `"+str(file.name) +"`\nSpeed: "+ str(file.download_speed_string())+"\nProgress: "+str(file.progress_string())+"\nTotal Size: "+str(file.total_length_string())+"\nStatus: "+str(file.status)+"\nETA:  "+str(file.eta_string())+"\n\n"
-					await event.edit(msg)
-					await asyncio.sleep(0.1)
 				else:
 					msg = file.error_message
 					await event.edit(msg)
