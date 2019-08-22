@@ -20,6 +20,7 @@ else:
 
 
 def admin_cmd(pattern=None, allow_sudo=True, **args):
+async def _(events):
     if pattern is not None:
         args["pattern"] = re.compile(Config.COMMAND_HAND_LER + pattern)
     if allow_sudo:
