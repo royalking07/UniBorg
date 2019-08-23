@@ -36,7 +36,7 @@ async def _(event):
     for result in soup.find_all('a', {'class': 'w-gl__result-title'}):
         title = result.text
         link = result.get('href')
-        msg += f"**{title}**{link}\n"
+        msg += f"------------------------------------------------------------------------[{title}]({link})------------------------------------------------------------------------\n"
     await event.edit(
         "**Google Search Query:**\n\n`" + match_ + "`\n\n**Results:**\n" + msg,
         link_preview = False)
