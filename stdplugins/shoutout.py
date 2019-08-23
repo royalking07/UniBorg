@@ -16,7 +16,6 @@ async def shout(args):
     else:
         msg = "```"
         messagestr = args.pattern_match.group(1)
-        messagestr = messagestr[7:]
         text = " ".join(messagestr)
         result = []
         result.append(' '.join([s for s in text]))
