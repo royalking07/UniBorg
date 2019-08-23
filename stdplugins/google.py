@@ -37,7 +37,7 @@ async def _(event):
     i = 1
     query = event.pattern_match.group(1)
     stop=Config.GOOGLE_SEARCH_COUNT_LIMIT
-    for url in search(query, stop):
+    for url in search(query, stop=5):
         a = google_scrape(url)
         await event.edit("Done!!")
         await asyncio.sleep(2)
