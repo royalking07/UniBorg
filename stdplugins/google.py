@@ -36,11 +36,11 @@ async def _(event):
     i = 1
     query = event.pattern_match.group(1)
     for url in search(query, stop=Config.GOOGLE_SEARCH_COUNT_LIMIT):
-    a = google_scrape(url)
-    await event.edit("Done!!")
-    await asyncio.sleep(2)
-    await event.edit(str(i) + ". " + a + "\n" + url + " ")
-    i += 1
+        a = google_scrape(url)
+        await event.edit("Done!!")
+        await asyncio.sleep(2)
+        await event.edit(str(i) + ". " + a + "\n" + url + " ")
+        i += 1
 
 @borg.on(admin_cmd("google image (.*)"))
 async def _(event):
