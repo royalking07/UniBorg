@@ -19,7 +19,8 @@
     },
     "LOCATION": {
       "description": "Set your Location for Time Plugin",
-      "value": ""
+      "value": "",
+      "required": false
     },
     "APP_ID": {
       "description": "Get this value from my.telegram.org! Please do not steal",
