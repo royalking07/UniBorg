@@ -11,13 +11,10 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from requests import get
-from urllib.parse import urlencode, urlparse, parse_qs
-import cssselect
-from lxml.html import fromstring
-from requests import get
+from urllib.parse import quote_plus
+from urllib.error import HTTPError
 from google_images_download import google_images_download
 from gsearch.googlesearch import search
-import urllib
 from uniborg.util import admin_cmd
 
 
