@@ -16,7 +16,7 @@ from urllib.error import HTTPError
 from google_images_download import google_images_download
 from gsearch.googlesearch import search
 import urllib
-from uniboeg.util import admin_cmd
+from uniborg.util import admin_cmd
 
 
 def progress(current, total):
