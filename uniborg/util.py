@@ -20,7 +20,6 @@ else:
 
 
 def admin_cmd(pattern=None, allow_sudo=True, **args):
-async def _(events):
     if pattern is not None:
         args["pattern"] = re.compile(Config.COMMAND_HAND_LER + pattern)
     if allow_sudo:
@@ -29,12 +28,8 @@ async def _(events):
         args["outgoing"] = True
     args["blacklist_chats"] = True
     args["chats"] = list(Config.UB_BLACK_LIST_CHAT)
-    await events.NewMessage(**args)
-    try:
-        return events.edit("placeholder")
-    except:
-        return events.reply("placeholder")
-
+    return events.NewMessage(**args)
+    
 
 async def is_read(borg, entity, message, is_out=None):
     """
