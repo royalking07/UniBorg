@@ -29,7 +29,7 @@ def google_scrape(url):
     
     
 @borg.on(admin_cmd("google search (.*)"))
-async def _(event)
+async def _(event):
     if event.fwd_from:
         return
     await event.edit("Processing ...")
