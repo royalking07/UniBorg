@@ -15,31 +15,32 @@ from urllib.parse import quote_plus
 from urllib.error import HTTPError
 from google_images_download import google_images_download
 from gsearch.googlesearch import search
-from uniborg.util import admin_cmd
+import urllib
 
 
 def progress(current, total):
     logger.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
     
     
+def google_scrape(url):
+    thepage = urllib.urlopen(url)
+    soup = BeautifulSoup(thepage, "html.parser")
+    return soup.title.text    
+    
+    
 @borg.on(admin_cmd("google search (.*)"))
-async def _(event):
-    await event.edit("`UniBorg is Getting Information From Google Please Wait... ✍️🙇`")
-    match_ = event.pattern_match.group(1)
-    match = quote_plus(match_)
-    if not match:
-        await event.edit("`I can't search nothing !!`")
+async def _(event)
+    if event.fwd_from:
         return
-    plain_txt = get(f"https://www.google.com/search?source=hp&ei=-AtgXdDBLY_MwAKWu7tY&q={match}&oq=test&gs_l=psy-ab.3..35i39l2j0l8.1104.1640..2559...0.0..0.1000.2842.6-2j1......0....1..gws-wiz.....6.6nGBRrBKeUc&ved=0ahUKEwjQnbH1rJnkAhUPJlAKHZbdDgsQ4dUDCAc&uact=5", 'html').text
-    soup = BeautifulSoup(plain_txt, "lxml")
-    msg = ""
-    for result in soup.find_all('a', {'class': 'w-gl__result-title'}):
-        title = result.text
-        link = result.get('href')
-        msg += f"**{title}**{link}\n"
-    await event.edit(
-        "**Google Search Query:**\n\n`" + match_ + "`\n\n**Results:**\n" + msg,
-        link_preview = False)
+    await event.edit("Processing ...")
+    i = 1
+    query = event.pattern_match.group(1)
+    for url in search(query, stop=Config.GOOGLE_SEARCH_COUNT_LIMIT):
+    a = google_scrape(url)
+    await event.edit("Done!!")
+    await asyncio.sleep(2)
+    await event.edit(str(i) + ". " + a + "\n" + url + " ")
+    i += 1
 
 @borg.on(admin_cmd("google image (.*)"))
 async def _(event):
