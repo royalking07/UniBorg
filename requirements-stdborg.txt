@@ -3,6 +3,7 @@ aiohttp
 beautifulsoup4
 cfscrape
 cryptg
+cssselect
 py-cpuinfo
 emoji
 googletrans
