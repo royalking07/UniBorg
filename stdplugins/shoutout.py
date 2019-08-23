@@ -9,13 +9,13 @@ from uniborg.util import admin_cmd
 import random
 
 
-@borg.on(admin_cmd("shout "))
+@borg.on(admin_cmd("shout ?(.*)"))
 async def shout(args):
     if args.fwd_from:
         return
     else:
         msg = "```"
-        messagestr = args.text
+        messagestr = args.pattern_match.group(1)
         messagestr = messagestr[7:]
         text = " ".join(messagestr)
         result = []
