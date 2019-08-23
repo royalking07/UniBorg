@@ -22,7 +22,7 @@ def progress(current, total):
     logger.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
     
     
-@borg.on(admin_cmd("go (.*)"))
+@borg.on(admin_cmd("google search (.*)"))
 async def _(event):
     await event.edit("`UniBorg is Getting Information From Google Please Wait... ✍️🙇`")
     match_ = event.pattern_match.group(1)
@@ -30,7 +30,7 @@ async def _(event):
     if not match:
         await event.edit("`I can't search nothing !!`")
         return
-    plain_txt = get(f"https://www.startpage.com/do/search?cmd=process_search&query={match}", 'html').text
+    plain_txt = get(f"https://www.google.com/search?source=hp&ei=-AtgXdDBLY_MwAKWu7tY&q={match}&oq=test&gs_l=psy-ab.3..35i39l2j0l8.1104.1640..2559...0.0..0.1000.2842.6-2j1......0....1..gws-wiz.....6.6nGBRrBKeUc&ved=0ahUKEwjQnbH1rJnkAhUPJlAKHZbdDgsQ4dUDCAc&uact=5", 'html').text
     soup = BeautifulSoup(plain_txt, "lxml")
     msg = ""
     for result in soup.find_all('a', {'class': 'w-gl__result-title'}):
