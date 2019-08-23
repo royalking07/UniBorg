@@ -27,16 +27,23 @@ def progress(current, total):
     
 @borg.on(admin_cmd("google search (.*)"))
 async def _(event):
-    if event.fwd_from:
+    await event.edit("`UniBorg is Getting Information From Google Please Wait... ✍️🙇`")
+    match_ = event.pattern_match.group(1)
+    match = quote_plus(match_)
+    if not match:
+        await event.edit("`I can't search nothing !!`")
         return
-    input_str = event.pattern_match.group(1)
-    raw = get(f"https://www.google.com/search?q={input_str}").text
-    page = fromstring(raw)
-    for result in page.cssselect(".r a"):
-        url = result.get("href")
-        if url.startswith("/url?"):
-            url = parse_qs(urlparse(url).query)['q']
-        await event.edit(url[0])
+    plain_txt = get(f"https://www.google.com/search?q={match}", 'html').text
+    soup = BeautifulSoup(plain_txt, "lxml")
+    msg = ""
+    for result in soup.find_all('a', {'class': 'w-gl__result-title'}):
+        title = result.text
+        link = result.get('href')
+        msg += f"**{title}**{link}\n"
+    await event.edit(
+        "**Google Search Query:**\n\n`" + match_ + "`\n\n**Results:**\n" + msg,
+        link_preview = False)
+
 
 @borg.on(admin_cmd("google image (.*)"))
 async def _(event):
