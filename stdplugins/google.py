@@ -11,8 +11,9 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from requests import get
-from urllib.parse import quote_plus
-from urllib.error import HTTPError
+from urllib.parse import urlencode, urlparse, parse_qs
+from lxml.html import fromstring
+from requests import get
 from google_images_download import google_images_download
 from gsearch.googlesearch import search
 import urllib
@@ -23,26 +24,18 @@ def progress(current, total):
     logger.info("Downloaded {} of {}\nCompleted {}".format(current, total, (current / total) * 100))
     
     
-def google_scrape(url):
-    thepage = urllib.urlopen(url)
-    soup = BeautifulSoup(thepage, "html.parser")
-    return soup.title.text    
-    
-    
 @borg.on(admin_cmd("google search (.*)"))
 async def _(event):
     if event.fwd_from:
         return
-    await event.edit("Processing ...")
-    i = 1
-    query = event.pattern_match.group(1)
-    stop=Config.GOOGLE_SEARCH_COUNT_LIMIT
-    for url in search(query, stop=5):
-        a = google_scrape(url)
-        await event.edit("Done!!")
-        await asyncio.sleep(2)
-        await event.edit(str(i) + ". " + a + "\n" + url + " ")
-        i += 1
+    input_str = event.pattern_match.group(1)
+    raw = get(f"https://www.google.com/search?q={input_str}").text
+    page = fromstring(raw)
+    for result in page.cssselect(".r a"):
+        url = result.get("href")
+        if url.startswith("/url?"):
+            url = parse_qs(urlparse(url).query)['q']
+        await event.edit(url[0])
 
 @borg.on(admin_cmd("google image (.*)"))
 async def _(event):
