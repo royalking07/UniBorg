@@ -30,7 +30,7 @@ async def _(event):
     if not match:
         await event.edit("`I can't search nothing !!`")
         return
-    plain_txt = get(f"https://www.google.com/search?q={match}", "html.parser").text
+    plain_txt = get(f"https://www.startpage.com/do/search?cmd=process_search&query={match}", "html.parser").text
     soup = BeautifulSoup(plain_txt, "lxml")
     msg = ""
     for result in soup.find_all('a', {'class': 'w-gl__result-title'}):
