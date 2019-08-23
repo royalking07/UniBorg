@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from requests import get
 from urllib.parse import urlencode, urlparse, parse_qs
-from lxml import cssselect
+import cssselect
 from lxml.html import fromstring
 from requests import get
 from google_images_download import google_images_download
